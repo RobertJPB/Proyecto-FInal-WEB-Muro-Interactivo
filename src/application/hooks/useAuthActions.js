@@ -4,6 +4,7 @@ import {
   registerUserUseCase,
   loginUserUseCase,
   googleLoginUseCase,
+  updateProfileUseCase,
   logoutUserUseCase,
 } from '../services/ServiceContainer';
 import toast from 'react-hot-toast';
@@ -57,12 +58,26 @@ export const useAuthActions = () => {
     }
   };
 
+  const updateProfile = async (uid, data) => {
+    setLoading(true);
+    try {
+      await updateProfileUseCase.execute(uid, data);
+      toast.success('Perfil actualizado correctamente.');
+      return true;
+    } catch (err) {
+      toast.error(err.message || 'Error al actualizar perfil.');
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const logout = async () => {
     await logoutUserUseCase.execute();
     toast.success('Sesión cerrada.');
   };
 
-  return { register, login, loginWithGoogle, logout, loading };
+  return { register, login, loginWithGoogle, updateProfile, logout, loading };
 };
 
 const translateFirebaseError = (msg) => {

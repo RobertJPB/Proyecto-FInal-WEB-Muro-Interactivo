@@ -18,8 +18,10 @@ import {
   where,
   getDocs,
   serverTimestamp,
+  updateDoc,
 } from 'firebase/firestore';
-import { auth, db } from '../firebase/firebaseConfig';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { auth, db, storage } from '../firebase/firebaseConfig';
 import { User } from '../../domain/entities/User';
 
 export class FirebaseUserRepository {
@@ -62,6 +64,23 @@ export class FirebaseUserRepository {
     if (querySnapshot.empty) return null;
     const docSnap = querySnapshot.docs[0];
     return User.fromFirestore(docSnap.data(), docSnap.id);
+  }
+
+  async updateProfile(uid, { nombre, apellido, photoFile }) {
+    let photoURL = null;
+
+    if (photoFile) {
+      const storageRef = ref(storage, `avatars/${uid}`);
+      await uploadBytes(storageRef, photoFile);
+      photoURL = await getDownloadURL(storageRef);
+    }
+
+    const userRef = doc(db, this.usersCollection, uid);
+    const updates = { nombre, apellido };
+    if (photoURL) updates.photoURL = photoURL;
+
+    await updateDoc(userRef, updates);
+    return await this.getUserById(uid);
   }
 
   async login(email, password) {

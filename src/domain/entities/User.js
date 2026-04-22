@@ -1,12 +1,13 @@
 // src/domain/entities/User.js
 // Entidad de dominio: Usuario
 export class User {
-  constructor({ uid, username, nombre, apellido, email, createdAt }) {
+  constructor({ uid, username, nombre, apellido, email, photoURL, createdAt }) {
     this.uid = uid;
     this.username = username;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
+    this.photoURL = photoURL || null;
     this.createdAt = createdAt || new Date();
   }
 
@@ -21,6 +22,7 @@ export class User {
       nombre: this.nombre,
       apellido: this.apellido,
       email: this.email,
+      photoURL: this.photoURL,
       createdAt: this.createdAt,
     };
   }

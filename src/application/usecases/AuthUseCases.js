@@ -64,3 +64,16 @@ export class GoogleLoginUseCase {
     return await this.userRepository.loginWithGoogle();
   }
 }
+
+export class UpdateProfileUseCase {
+  constructor(userRepository) {
+    this.userRepository = userRepository;
+  }
+
+  async execute(uid, { nombre, apellido, photoFile }) {
+    if (!nombre || !apellido) {
+      throw new Error('Nombre y apellido son requeridos.');
+    }
+    return await this.userRepository.updateProfile(uid, { nombre, apellido, photoFile });
+  }
+}

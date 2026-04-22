@@ -23,6 +23,7 @@ export class CreatePostUseCase {
       autorUsername: autor.username,
       autorNombre: autor.nombre,
       autorApellido: autor.apellido,
+      autorPhotoURL: autor.photoURL,
       createdAt: new Date(),
       likes: [],
     });

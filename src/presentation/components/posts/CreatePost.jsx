@@ -8,6 +8,9 @@ const CreatePost = ({ onSubmit }) => {
   const { currentUser } = useAuth();
   const [contenido, setContenido] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const initial = currentUser.nombre ? currentUser.nombre.charAt(0).toUpperCase() : '?';
 
   const remaining = MAX_CHARS - contenido.length;
   const isOverLimit = remaining < 0;
@@ -32,14 +35,28 @@ const CreatePost = ({ onSubmit }) => {
           <span style={styles.user}>Identificado como: @{currentUser.username}</span>
         </div>
 
-        <textarea
-          value={contenido}
-          onChange={(e) => setContenido(e.target.value)}
-          placeholder="Escriba el contenido de su mensaje aquí..."
-          style={styles.textarea}
-          rows={3}
-          disabled={loading}
-        />
+        <div style={styles.inputSection}>
+          <div style={styles.avatar}>
+            {currentUser.photoURL ? (
+              <img src={currentUser.photoURL} alt="User-Avatar" style={styles.avatarImg} />
+            ) : (
+              initial
+            )}
+          </div>
+          <textarea
+            value={contenido}
+            onChange={(e) => setContenido(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            placeholder="Escriba el contenido de su mensaje aquí..."
+            style={{
+              ...styles.textarea,
+              borderBottomColor: isFocused ? '#0055ff' : '#e2e2e2'
+            }}
+            rows={3}
+            disabled={loading}
+          />
+        </div>
 
         <div style={styles.footer}>
           <span style={{ 
@@ -67,9 +84,12 @@ const CreatePost = ({ onSubmit }) => {
 const styles = {
   container: {
     background: '#ffffff',
-    border: '1px solid #000',
+    border: '1px solid #f0f0f0',
+    borderRadius: '12px',
     padding: '24px',
-    marginBottom: '32px',
+    marginBottom: '40px',
+    boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+    transition: 'all 0.3s ease',
   },
   form: {
     display: 'flex',
@@ -78,43 +98,76 @@ const styles = {
   header: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginBottom: '12px',
+    marginBottom: '20px',
   },
   label: {
-    fontSize: '13px',
+    fontSize: '11px',
     fontWeight: '700',
     textTransform: 'uppercase',
+    color: '#999',
+    letterSpacing: '1px',
   },
   user: {
-    fontSize: '12px',
-    color: '#666',
+    fontSize: '11px',
+    color: '#bbb',
+    fontWeight: '500',
+  },
+  inputSection: {
+    display: 'flex',
+    gap: '16px',
+    alignItems: 'flex-start',
+    marginBottom: '16px',
+  },
+  avatar: {
+    width: '36px',
+    height: '36px',
+    borderRadius: '50%',
+    background: '#0055ff',
+    color: '#ffffff',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '14px',
+    fontWeight: '700',
+    flexShrink: 0,
+    overflow: 'hidden',
+  },
+  avatarImg: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
   },
   textarea: {
     width: '100%',
-    padding: '12px 0',
+    padding: '4px 0',
     border: 'none',
-    borderBottom: '1px solid #e2e2e2',
-    fontSize: '16px',
+    borderBottom: '2px solid #e2e2e2',
+    fontSize: '18px',
     fontFamily: 'Inter, sans-serif',
     outline: 'none',
     resize: 'none',
-    marginBottom: '16px',
     color: '#000',
+    transition: 'border-color 0.2s ease',
   },
   footer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: '8px',
   },
   counter: {
     fontSize: '12px',
+    fontWeight: '500',
   },
   btn: {
     background: '#000',
     color: '#fff',
-    padding: '10px 24px',
+    padding: '12px 32px',
     fontSize: '13px',
     fontWeight: '600',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    transition: 'transform 0.1s ease',
   },
 };
 

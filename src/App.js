@@ -7,6 +7,7 @@ import Navbar from './presentation/components/layout/Navbar';
 import HomePage from './presentation/pages/HomePage';
 import LoginPage from './presentation/pages/LoginPage';
 import RegisterPage from './presentation/pages/RegisterPage';
+import ProfilePage from './presentation/pages/ProfilePage';
 
 // Ruta protegida: redirige al login si no hay sesión
 const ProtectedRoute = ({ children }) => {
@@ -65,6 +66,9 @@ const AppContent = () => (
       } />
       <Route path="/register" element={
         <PublicRoute><RegisterPage /></PublicRoute>
+      } />
+      <Route path="/perfil" element={
+        <ProtectedRoute><ProfilePage /></ProtectedRoute>
       } />
 
       {/* Cualquier otra ruta → Home */}

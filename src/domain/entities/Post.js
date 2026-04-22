@@ -1,13 +1,14 @@
 // src/domain/entities/Post.js
 // Entidad de dominio: Post/Publicación
 export class Post {
-  constructor({ id, contenido, autorUid, autorUsername, autorNombre, autorApellido, createdAt, likes = [] }) {
+  constructor({ id, contenido, autorUid, autorUsername, autorNombre, autorApellido, autorPhotoURL, createdAt, likes = [] }) {
     this.id = id;
     this.contenido = contenido;
     this.autorUid = autorUid;
     this.autorUsername = autorUsername;
     this.autorNombre = autorNombre;
     this.autorApellido = autorApellido;
+    this.autorPhotoURL = autorPhotoURL || null;
     this.createdAt = createdAt || new Date();
     this.likes = likes;
   }
@@ -31,6 +32,7 @@ export class Post {
       autorUsername: this.autorUsername,
       autorNombre: this.autorNombre,
       autorApellido: this.autorApellido,
+      autorPhotoURL: this.autorPhotoURL,
       createdAt: this.createdAt,
       likes: this.likes,
     };

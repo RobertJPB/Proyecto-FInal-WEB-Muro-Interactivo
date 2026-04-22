@@ -27,9 +27,18 @@ const Navbar = () => {
         <div style={styles.actions}>
           {currentUser ? (
             <>
-              <span style={styles.user}>
-                {currentUser.username}
-              </span>
+              <Link to="/perfil" style={styles.userContainer}>
+                {currentUser.photoURL ? (
+                  <img src={currentUser.photoURL} alt="Mini-profile" style={styles.miniAvatar} />
+                ) : (
+                  <div style={styles.miniPlaceholder}>
+                    {currentUser.nombre ? currentUser.nombre.charAt(0).toUpperCase() : '?'}
+                  </div>
+                )}
+                <span style={styles.user}>
+                  {currentUser.username}
+                </span>
+              </Link>
               <button onClick={handleLogout} style={styles.btnLogout}>
                 Cerrar sesión
               </button>
@@ -90,15 +99,46 @@ const styles = {
     alignItems: 'center',
     gap: '24px',
   },
+  userContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+    textDecoration: 'none',
+  },
+  miniAvatar: {
+    width: '32px',
+    height: '32px',
+    borderRadius: '50%',
+    objectFit: 'cover',
+  },
+  miniPlaceholder: {
+    width: '32px',
+    height: '32px',
+    borderRadius: '50%',
+    background: '#0055ff',
+    color: '#fff',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '12px',
+    fontWeight: 700,
+  },
   user: {
     fontSize: '14px',
     fontWeight: 500,
-    color: '#666',
+    color: '#333',
   },
   btnLogout: {
     fontSize: '14px',
     color: '#000',
-    textDecoration: 'underline',
+    textDecoration: 'none',
+    fontWeight: 500,
+    cursor: 'pointer',
+    background: 'none',
+    border: 'none',
+    padding: 0,
+    marginLeft: '8px',
+    opacity: 0.7,
   },
   link: {
     fontSize: '14px',

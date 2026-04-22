@@ -25,9 +25,18 @@ const PostCard = ({ post, onLike, onDelete }) => {
   return (
     <div style={styles.card}>
       <div style={styles.header}>
-        <div style={styles.authorInfo}>
-          <span style={styles.name}>{post.getNombreCompleto()}</span>
-          <span style={styles.username}>@{post.autorUsername}</span>
+        <div style={styles.authorSection}>
+          <div style={styles.avatar}>
+            {post.autorPhotoURL ? (
+              <img src={post.autorPhotoURL} alt="Author" style={styles.avatarImg} />
+            ) : (
+              <span>{post.autorNombre ? post.autorNombre.charAt(0).toUpperCase() : '?'}</span>
+            )}
+          </div>
+          <div style={styles.authorInfo}>
+            <span style={styles.name}>{post.getNombreCompleto()}</span>
+            <span style={styles.username}>@{post.autorUsername}</span>
+          </div>
         </div>
         <span style={styles.date}>{fechaFormat}</span>
       </div>
@@ -76,10 +85,34 @@ const styles = {
     alignItems: 'center',
     marginBottom: '12px',
   },
+  authorSection: {
+    display: 'flex',
+    gap: '12px',
+    alignItems: 'center',
+  },
+  avatar: {
+    width: '38px',
+    height: '38px',
+    borderRadius: '50%',
+    background: '#0055ff',
+    color: '#fff',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '14px',
+    fontWeight: 700,
+    overflow: 'hidden',
+    flexShrink: 0,
+  },
+  avatarImg: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  },
   authorInfo: {
     display: 'flex',
-    gap: '8px',
-    alignItems: 'baseline',
+    flexDirection: 'column',
+    gap: '1px',
   },
   name: {
     fontWeight: '600',
