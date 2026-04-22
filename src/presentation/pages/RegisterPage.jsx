@@ -149,10 +149,10 @@ const styles = {
   page: {
     minHeight: 'calc(100vh - 80px)',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
     background: '#ffffff',
-    padding: '60px 0',
+    padding: '40px 0',
   },
   container: {
     width: '100%',

@@ -103,8 +103,9 @@ const styles = {
   page: {
     minHeight: 'calc(100vh - 80px)',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
+    paddingTop: '60px',
     background: '#ffffff',
   },
   container: {
@@ -123,8 +124,7 @@ const styles = {
   sub: {
     fontSize: '14px',
     color: '#888888',
-    marginBottom: '48px',
-    textTransform: 'lowercase',
+    marginBottom: '32px',
   },
   link: {
     color: '#000000',
