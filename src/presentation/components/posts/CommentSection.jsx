@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useComments } from '../../../application/hooks/useComments';
 import CommentItem from './CommentItem';
 
-const CommentSection = ({ postId, currentUser }) => {
+const CommentSection = React.forwardRef(({ postId, currentUser }, ref) => {
   const { comments, loading, addComment } = useComments(postId, currentUser);
   const [newComment, setNewComment] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -33,6 +33,7 @@ const CommentSection = ({ postId, currentUser }) => {
       {currentUser && (
         <form onSubmit={handleSubmit} style={styles.form}>
           <input
+            ref={ref}
             type="text"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
@@ -51,7 +52,7 @@ const CommentSection = ({ postId, currentUser }) => {
       )}
     </div>
   );
-};
+});
 
 const styles = {
   section: {

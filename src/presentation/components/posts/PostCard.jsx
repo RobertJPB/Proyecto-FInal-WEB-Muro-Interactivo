@@ -1,5 +1,5 @@
 // src/presentation/components/posts/PostCard.jsx
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useAuth } from '../../context/AuthContext';
@@ -10,7 +10,13 @@ const PostCard = ({ post, onLike, onDelete }) => {
   const isLiked = currentUser ? post.isLikedBy(currentUser.uid) : false;
   const isOwner = currentUser?.uid === post.autorUid;
   const [deleting, setDeleting] = useState(false);
-  const [showComments, setShowComments] = useState(false);
+  const commentInputRef = useRef(null);
+
+  const handleCommentFocus = () => {
+    if (commentInputRef.current) {
+      commentInputRef.current.focus();
+    }
+  };
 
   const handleDelete = async () => {
     if (window.confirm('¿Está seguro de que desea eliminar este mensaje?')) {
@@ -62,12 +68,8 @@ const PostCard = ({ post, onLike, onDelete }) => {
           </button>
 
           <button
-            onClick={() => setShowComments(!showComments)}
-            style={{
-              ...styles.actionBtn,
-              color: showComments ? '#000' : '#666',
-              fontWeight: showComments ? '600' : '400',
-            }}
+            onClick={handleCommentFocus}
+            style={styles.actionBtn}
           >
             Comentar
           </button>
@@ -84,9 +86,11 @@ const PostCard = ({ post, onLike, onDelete }) => {
         )}
       </div>
 
-      {showComments && (
-        <CommentSection postId={post.id} currentUser={currentUser} />
-      )}
+      <CommentSection 
+        ref={commentInputRef}
+        postId={post.id} 
+        currentUser={currentUser} 
+      />
     </div>
   );
 };
