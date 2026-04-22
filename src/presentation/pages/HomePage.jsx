@@ -95,7 +95,7 @@ const styles = {
     padding: '12px 16px',
     background: '#f8f8f8',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   guestText: { fontSize: '13px', fontWeight: '600' },
