@@ -45,7 +45,7 @@ const PostCard = ({ post, onLike, onDelete }) => {
             fontWeight: isLiked ? '600' : '400',
           }}
         >
-          {isLiked ? 'Me gusta (Confirmado)' : 'Marcar como útil'}
+          {isLiked ? 'Me gusta' : 'Me gusta'}
           {post.getLikesCount() > 0 && <span style={styles.counter}>({post.getLikesCount()})</span>}
         </button>
 
@@ -55,7 +55,7 @@ const PostCard = ({ post, onLike, onDelete }) => {
             disabled={deleting}
             style={styles.deleteBtn}
           >
-            {deleting ? 'Procesando...' : 'Eliminar publicación'}
+            {deleting ? 'Borrando...' : 'Eliminar'}
           </button>
         )}
       </div>

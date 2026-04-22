@@ -33,13 +33,20 @@ const LoadingScreen = () => (
     background: '#ffffff',
   }}>
     <div style={{
-      fontFamily: 'Syne, sans-serif',
-      fontSize: '28px',
-      fontWeight: 800,
-      color: '#1a1a1a',
-      letterSpacing: '-1px',
+      fontFamily: 'Outfit, sans-serif',
+      fontSize: '32px',
+      fontWeight: 700,
+      color: '#000000',
+      marginBottom: '12px',
     }}>
-      muro
+      Muro Interactivo
+    </div>
+    <div style={{
+      fontSize: '14px',
+      color: '#666666',
+      marginBottom: '40px',
+    }}>
+      Cargando...
     </div>
     <span className="spinner" />
   </div>

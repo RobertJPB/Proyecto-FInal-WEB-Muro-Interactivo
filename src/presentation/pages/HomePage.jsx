@@ -15,14 +15,14 @@ const HomePage = () => {
       <header style={styles.header}>
         <div style={styles.container}>
           <div style={styles.brandSection}>
-            <h1 style={styles.title}>Plataforma de Mensajería</h1>
-            <span style={styles.stats}>{posts.length} Entradas registradas</span>
+            <h1 style={styles.title}>Muro de Mensajes</h1>
+            <span style={styles.stats}>{posts.length} Mensajes</span>
           </div>
           
           {!currentUser && (
             <div style={styles.guestCta}>
-              <span style={styles.guestText}>Modo Lectura.</span>
-              <Link to="/login" style={styles.btnSecondary}>Acceder para publicar</Link>
+              <span style={styles.guestText}>Vista pública.</span>
+              <Link to="/login" style={styles.btnSecondary}>Inicia sesión para participar</Link>
             </div>
           )}
         </div>
@@ -37,13 +37,13 @@ const HomePage = () => {
 
         <section style={styles.feedArea}>
           <div style={styles.feedHeader}>
-            <h2 style={styles.sectionLabel}>Registro Cronológico</h2>
+            <h2 style={styles.sectionLabel}>Últimas Publicaciones</h2>
           </div>
 
           {loading ? (
-            <div style={styles.statusBox}>Sincronizando con el servidor...</div>
+            <div style={styles.statusBox}>Cargando mensajes...</div>
           ) : posts.length === 0 ? (
-            <div style={styles.statusBox}>No existen publicaciones disponibles en el registro.</div>
+            <div style={styles.statusBox}>Aún no hay mensajes en este muro.</div>
           ) : (
             <div style={styles.feedGrid}>
               {posts.map((post) => (

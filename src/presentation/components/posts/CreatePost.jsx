@@ -28,7 +28,7 @@ const CreatePost = ({ onSubmit }) => {
     <div style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.header}>
-          <span style={styles.label}>Nueva publicación</span>
+          <span style={styles.label}>Escribir un mensaje</span>
           <span style={styles.user}>Identificado como: @{currentUser.username}</span>
         </div>
 
@@ -56,7 +56,7 @@ const CreatePost = ({ onSubmit }) => {
               opacity: (isEmpty || isOverLimit || loading) ? 0.3 : 1,
             }}
           >
-            {loading ? 'Procesando...' : 'Publicar mensaje'}
+            {loading ? 'Publicando...' : 'Publicar'}
           </button>
         </div>
       </form>
