@@ -8,15 +8,15 @@ service cloud.firestore {
       allow write: if request.auth != null && request.auth.uid == userId;
     }
     
-    // Publicaciones en el muro
+    // Publicaciones en el muro (Públicas para lectura)
     match /posts/{postId} {
-      allow read: if request.auth != null;
+      allow read: if true;
       allow create: if request.auth != null;
       allow update, delete: if request.auth != null && request.auth.uid == resource.data.autorUid;
       
-      // Hilos de conversación (comentarios)
+      // Hilos de conversación (Públicos para lectura)
       match /comments/{commentId} {
-        allow read: if request.auth != null;
+        allow read: if true;
         allow create: if request.auth != null;
         // Solo el autor del post o el autor del comentario (si implementamos borrado de comentarios)
         allow delete: if request.auth != null && (request.auth.uid == resource.data.autorUid);

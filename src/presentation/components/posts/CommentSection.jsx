@@ -24,7 +24,9 @@ const CommentSection = React.forwardRef(({ postId, currentUser }, ref) => {
         {loading ? (
           <div style={styles.loading}>Cargando hilos...</div>
         ) : comments.length === 0 ? (
-          <div style={styles.empty}>Sé el primero en comentar.</div>
+          <div style={styles.empty}>
+            {currentUser ? 'Sé el primero en comentar.' : 'Aún no hay comentarios.'}
+          </div>
         ) : (
           comments.map(c => <CommentItem key={c.id} comment={c} />)
         )}

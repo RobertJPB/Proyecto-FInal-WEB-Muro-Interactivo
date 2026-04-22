@@ -14,10 +14,7 @@ const HomePage = () => {
     <div style={styles.page}>
       <header style={styles.header}>
         <div style={styles.container}>
-          <div style={styles.brandSection}>
-            <h1 style={styles.title}>Muro de Mensajes</h1>
-            <span style={styles.stats}>{posts.length} Mensajes</span>
-          </div>
+          {/* Brand section removida por petición del usuario */}
           
           {!currentUser && (
             <div style={styles.guestCta}>
@@ -65,7 +62,7 @@ const styles = {
   page: { minHeight: '100vh', background: '#ffffff' },
   header: {
     padding: '24px 0',
-    borderBottom: '2px solid #000000',
+    borderBottom: '1px solid #000000',
     background: '#ffffff',
     marginBottom: '24px',
   },
