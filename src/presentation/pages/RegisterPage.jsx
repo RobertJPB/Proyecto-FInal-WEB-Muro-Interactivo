@@ -147,12 +147,11 @@ const RegisterPage = () => {
 
 const styles = {
   page: {
-    minHeight: 'calc(100vh - 80px)',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
     background: '#ffffff',
-    padding: '40px 0',
+    padding: '10px 0',
   },
   container: {
     width: '100%',
@@ -161,23 +160,23 @@ const styles = {
   },
   title: {
     fontFamily: 'Outfit, sans-serif',
-    fontSize: '48px',
+    fontSize: '32px',
     fontWeight: 600,
     color: '#000000',
-    letterSpacing: '0.05em',
-    marginBottom: '12px',
+    letterSpacing: '0.04em',
+    marginBottom: '8px',
   },
   sub: {
     fontSize: '14px',
     color: '#666666',
-    marginBottom: '40px',
+    marginBottom: '20px',
   },
   link: {
     color: '#000000',
     fontWeight: 600,
     textDecoration: 'underline',
   },
-  form: { display: 'flex', flexDirection: 'column', gap: '32px' },
+  form: { display: 'flex', flexDirection: 'column', gap: '20px' },
   row: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' },
   field: { display: 'flex', flexDirection: 'column', gap: '8px' },
   label: { 

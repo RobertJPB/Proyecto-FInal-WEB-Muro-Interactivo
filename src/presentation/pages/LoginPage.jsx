@@ -101,12 +101,11 @@ const LoginPage = () => {
 
 const styles = {
   page: {
-    minHeight: 'calc(100vh - 80px)',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    paddingTop: '60px',
     background: '#ffffff',
+    padding: '20px 0',
   },
   container: {
     width: '100%',
@@ -115,23 +114,23 @@ const styles = {
   },
   title: {
     fontFamily: 'Outfit, sans-serif',
-    fontSize: '48px',
+    fontSize: '36px',
     fontWeight: 600,
     color: '#000000',
     letterSpacing: '0.05em',
-    marginBottom: '12px',
+    marginBottom: '8px',
   },
   sub: {
     fontSize: '14px',
-    color: '#888888',
-    marginBottom: '32px',
+    color: '#666666',
+    marginBottom: '24px',
   },
   link: {
     color: '#000000',
     fontWeight: 600,
     textDecoration: 'underline',
   },
-  form: { display: 'flex', flexDirection: 'column', gap: '32px' },
+  form: { display: 'flex', flexDirection: 'column', gap: '24px' },
   field: { display: 'flex', flexDirection: 'column', gap: '12px' },
   label: { 
     fontSize: '11px', 
