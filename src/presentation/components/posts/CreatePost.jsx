@@ -25,91 +25,96 @@ const CreatePost = ({ onSubmit }) => {
   if (!currentUser) return null;
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <header style={styles.header}>
-        <span style={styles.username}>@{currentUser.username} está escribiendo...</span>
-      </header>
+    <div style={styles.container}>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <div style={styles.header}>
+          <span style={styles.label}>Nueva publicación</span>
+          <span style={styles.user}>Identificado como: @{currentUser.username}</span>
+        </div>
 
-      <textarea
-        value={contenido}
-        onChange={(e) => setContenido(e.target.value)}
-        placeholder="Escribe algo aquí."
-        style={styles.textarea}
-        rows={4}
-        disabled={loading}
-      />
+        <textarea
+          value={contenido}
+          onChange={(e) => setContenido(e.target.value)}
+          placeholder="Escriba el contenido de su mensaje aquí..."
+          style={styles.textarea}
+          rows={3}
+          disabled={loading}
+        />
 
-      <footer style={styles.footer}>
-        <span style={{ 
-          ...styles.counter, 
-          color: isOverLimit ? '#dc3545' : '#999999' 
-        }}>
-          {remaining} caracteres
-        </span>
-        <button
-          type="submit"
-          disabled={isEmpty || isOverLimit || loading}
-          style={{
-            ...styles.btn,
-            opacity: (isEmpty || isOverLimit || loading) ? 0.3 : 1,
-          }}
-        >
-          {loading ? 'Subiendo...' : 'Publicar'}
-        </button>
-      </footer>
-    </form>
+        <div style={styles.footer}>
+          <span style={{ 
+            ...styles.counter, 
+            color: isOverLimit ? '#d32f2f' : '#666' 
+          }}>
+            {remaining} caracteres disponibles
+          </span>
+          <button
+            type="submit"
+            disabled={isEmpty || isOverLimit || loading}
+            style={{
+              ...styles.btn,
+              opacity: (isEmpty || isOverLimit || loading) ? 0.3 : 1,
+            }}
+          >
+            {loading ? 'Procesando...' : 'Publicar mensaje'}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
 const styles = {
-  form: {
+  container: {
     background: '#ffffff',
-    padding: '40px 0',
-    borderBottom: '2px solid #000000',
-    marginBottom: '40px',
+    border: '1px solid #000',
+    padding: '24px',
+    marginBottom: '32px',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   header: {
-    marginBottom: '16px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '12px',
   },
-  username: {
-    fontSize: '11px',
-    color: '#888',
+  label: {
+    fontSize: '13px',
+    fontWeight: '700',
     textTransform: 'uppercase',
-    letterSpacing: '0.2em',
+  },
+  user: {
+    fontSize: '12px',
+    color: '#666',
   },
   textarea: {
     width: '100%',
-    background: 'transparent',
+    padding: '12px 0',
     border: 'none',
-    padding: '0',
-    color: '#000000',
-    fontSize: '20px',
-    fontFamily: 'Outfit, sans-serif',
-    fontWeight: 400,
-    lineHeight: 1.4,
-    resize: 'none',
+    borderBottom: '1px solid #e2e2e2',
+    fontSize: '16px',
+    fontFamily: 'Inter, sans-serif',
     outline: 'none',
-    marginBottom: '20px',
+    resize: 'none',
+    marginBottom: '16px',
+    color: '#000',
   },
   footer: {
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   counter: {
-    fontSize: '11px',
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
+    fontSize: '12px',
   },
   btn: {
-    padding: '12px 32px',
-    background: '#000000',
-    color: '#ffffff',
-    fontFamily: 'Outfit, sans-serif',
-    fontWeight: 600,
-    fontSize: '12px',
-    textTransform: 'uppercase',
-    letterSpacing: '0.15em',
+    background: '#000',
+    color: '#fff',
+    padding: '10px 24px',
+    fontSize: '13px',
+    fontWeight: '600',
   },
 };
 

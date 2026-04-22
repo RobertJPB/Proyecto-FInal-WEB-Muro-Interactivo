@@ -11,139 +11,123 @@ const HomePage = () => {
   const { posts, loading, createPost, toggleLike, deletePost } = usePosts(currentUser);
 
   return (
-    <main style={styles.main}>
-      <header style={styles.hero}>
+    <div style={styles.page}>
+      <header style={styles.header}>
         <div style={styles.container}>
-          <h1 style={styles.title}>
-            muro<span style={styles.accent}>.</span> interactivo
-          </h1>
-          <p style={styles.subtitle}>
-            un espacio para compartir sin ruido. {posts.length} mensajes publicados.
-          </p>
+          <div style={styles.brandSection}>
+            <h1 style={styles.title}>Plataforma de Mensajería</h1>
+            <span style={styles.stats}>{posts.length} Entradas registradas</span>
+          </div>
+          
+          {!currentUser && (
+            <div style={styles.guestCta}>
+              <span style={styles.guestText}>Modo Lectura.</span>
+              <Link to="/login" style={styles.btnSecondary}>Acceder para publicar</Link>
+            </div>
+          )}
         </div>
       </header>
 
-      <div style={styles.container}>
-        {currentUser ? (
-          <CreatePost onSubmit={createPost} />
-        ) : (
-          <div style={styles.cta}>
-            <p style={styles.ctaText}>conéctate para participar.</p>
-            <div style={styles.ctaActions}>
-              <Link to="/login" style={styles.link}>entrar</Link>
-              <Link to="/register" style={styles.btn}>crear cuenta</Link>
-            </div>
-          </div>
+      <main style={styles.container}>
+        {currentUser && (
+          <section style={styles.creationArea}>
+            <CreatePost onSubmit={createPost} />
+          </section>
         )}
 
-        {loading ? (
-          <div style={styles.loading}>
-            <p>cargando muro...</p>
+        <section style={styles.feedArea}>
+          <div style={styles.feedHeader}>
+            <h2 style={styles.sectionLabel}>Registro Cronológico</h2>
           </div>
-        ) : posts.length === 0 ? (
-          <div style={styles.empty}>
-            <p style={styles.emptyText}>el muro está en silencio.</p>
-          </div>
-        ) : (
-          <div style={styles.feed}>
-            {posts.map((post, i) => (
-              <PostCard
-                key={post.id}
-                post={post}
-                index={i}
-                onLike={toggleLike}
-                onDelete={deletePost}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-    </main>
+
+          {loading ? (
+            <div style={styles.statusBox}>Sincronizando con el servidor...</div>
+          ) : posts.length === 0 ? (
+            <div style={styles.statusBox}>No existen publicaciones disponibles en el registro.</div>
+          ) : (
+            <div style={styles.feedGrid}>
+              {posts.map((post) => (
+                <PostCard
+                  key={post.id}
+                  post={post}
+                  onLike={toggleLike}
+                  onDelete={deletePost}
+                />
+              ))}
+            </div>
+          )}
+        </section>
+      </main>
+    </div>
   );
 };
 
 const styles = {
-  main: { minHeight: '100vh', background: '#ffffff' },
-  hero: {
-    padding: '100px 0 60px',
-    borderBottom: '1px solid #f0f0f0',
+  page: { minHeight: '100vh', background: '#ffffff' },
+  header: {
+    padding: '24px 0',
+    borderBottom: '2px solid #000000',
+    background: '#ffffff',
+    marginBottom: '24px',
   },
   container: {
-    maxWidth: '800px',
+    maxWidth: '720px',
     margin: '0 auto',
-    padding: '0 32px',
+    padding: '0 20px',
   },
-  title: {
-    fontFamily: 'Outfit, sans-serif',
-    fontSize: '56px',
-    fontWeight: 500,
-    color: '#000000',
-    letterSpacing: '0.05em',
-    marginBottom: '20px',
-    textTransform: 'lowercase',
-    lineHeight: 1.1,
-  },
-  accent: { color: '#888' },
-  subtitle: {
-    fontSize: '14px',
-    color: '#888888',
-    textTransform: 'lowercase',
-    letterSpacing: '0.05em',
-  },
-  cta: {
-    padding: '60px 0',
-    textAlign: 'center',
-    borderBottom: '1px solid #f0f0f0',
-    marginBottom: '40px',
-  },
-  ctaText: {
-    fontSize: '18px',
-    marginBottom: '24px',
-    textTransform: 'lowercase',
-  },
-  ctaActions: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '32px',
-  },
-  link: {
-    fontSize: '14px',
-    fontWeight: 600,
-    textTransform: 'lowercase',
-    borderBottom: '1px solid #000',
-  },
-  btn: {
-    padding: '12px 32px',
-    background: '#000',
-    color: '#fff',
-    fontSize: '12px',
-    fontWeight: 700,
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
-  },
-  loading: {
-    padding: '100px 0',
-    textAlign: 'center',
-    color: '#888',
-    fontSize: '13px',
-    textTransform: 'lowercase',
-    letterSpacing: '0.1em',
-  },
-  empty: {
-    padding: '100px 0',
-    textAlign: 'center',
-  },
-  emptyText: {
-    fontSize: '14px',
-    color: '#ccc',
-    textTransform: 'lowercase',
-    letterSpacing: '0.1em',
-  },
-  feed: {
+  brandSection: {
     display: 'flex',
     flexDirection: 'column',
+    gap: '4px',
   },
+  title: {
+    fontSize: '24px',
+    fontWeight: '700',
+    color: '#000',
+    letterSpacing: '-0.5px',
+  },
+  stats: {
+    fontSize: '12px',
+    color: '#666',
+    fontWeight: '500',
+  },
+  guestCta: {
+    marginTop: '16px',
+    padding: '12px 16px',
+    background: '#f8f8f8',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  guestText: { fontSize: '13px', fontWeight: '600' },
+  btnSecondary: {
+    fontSize: '12px',
+    fontWeight: '700',
+    textDecoration: 'underline',
+  },
+  creationArea: { marginBottom: '32px' },
+  feedArea: { paddingTop: '8px' },
+  feedHeader: {
+    marginBottom: '16px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+  },
+  sectionLabel: {
+    fontSize: '11px',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    color: '#333',
+  },
+  statusBox: {
+    padding: '60px 0',
+    textAlign: 'center',
+    fontSize: '14px',
+    color: '#999',
+    border: '1px dashed #eee',
+  },
+  feedGrid: { display: 'flex', flexDirection: 'column', gap: '1px', background: '#eee' }, // Líneas divisorias finas
 };
 
 export default HomePage;

@@ -16,25 +16,25 @@ const Navbar = () => {
 
   return (
     <nav style={styles.nav}>
-      <div style={styles.inner}>
+      <div style={styles.container}>
         <Link to="/" style={styles.logo}>
-          muro
+          Muro Interactivo
         </Link>
 
-        <div style={styles.right}>
+        <div style={styles.actions}>
           {currentUser ? (
             <>
-              <span style={styles.userBadge}>
+              <span style={styles.user}>
                 {currentUser.username}
               </span>
               <button onClick={handleLogout} style={styles.btnLogout}>
-                Salir
+                Cerrar sesión
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" style={styles.link}>Entrar</Link>
-              <Link to="/register" style={styles.btnBlack}>Registrarse</Link>
+              <Link to="/login" style={styles.link}>Iniciar sesión</Link>
+              <Link to="/register" style={styles.btnRegister}>Registrarse</Link>
             </>
           )}
         </div>
@@ -45,62 +45,55 @@ const Navbar = () => {
 
 const styles = {
   nav: {
-    position: 'sticky',
-    top: 0,
-    zIndex: 100,
+    height: '64px',
     background: '#ffffff',
-    borderBottom: '1px solid #f0f0f0',
-  },
-  inner: {
-    maxWidth: '800px',
-    margin: '0 auto',
-    padding: '0 32px',
-    height: '80px',
+    borderBottom: '1px solid #e2e2e2',
     display: 'flex',
     alignItems: 'center',
+    position: 'sticky',
+    top: 0,
+    zIndex: 1000,
+  },
+  container: {
+    width: '100%',
+    maxWidth: '1000px',
+    margin: '0 auto',
+    padding: '0 24px',
+    display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   logo: {
     fontFamily: 'Outfit, sans-serif',
-    fontSize: '24px',
+    fontSize: '20px',
     fontWeight: 700,
     color: '#000000',
-    textDecoration: 'none',
-    letterSpacing: '-1px',
-    textTransform: 'lowercase',
   },
-  right: {
+  actions: {
     display: 'flex',
     alignItems: 'center',
-    gap: '32px',
+    gap: '24px',
   },
-  userBadge: {
-    fontSize: '13px',
-    color: '#000000',
-    fontWeight: 600,
-    textTransform: 'lowercase',
-    opacity: 0.8,
+  user: {
+    fontSize: '14px',
+    fontWeight: 500,
+    color: '#666',
   },
   btnLogout: {
-    fontSize: '13px',
-    color: '#888888',
-    padding: '4px 0',
-    borderBottom: '1px solid transparent',
-    transition: 'all 0.2s',
+    fontSize: '14px',
+    color: '#000',
+    textDecoration: 'underline',
   },
   link: {
     fontSize: '14px',
-    fontWeight: 500,
-    color: '#000000',
+    color: '#000',
   },
-  btnBlack: {
-    padding: '10px 24px',
-    background: '#000000',
-    color: '#ffffff',
-    fontSize: '13px',
-    fontWeight: 700,
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
+  btnRegister: {
+    background: '#000',
+    color: '#fff',
+    padding: '8px 16px',
+    fontSize: '14px',
+    fontWeight: 500,
   },
 };
 

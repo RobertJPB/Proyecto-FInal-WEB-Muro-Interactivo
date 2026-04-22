@@ -58,7 +58,7 @@ export class FirebasePostRepository {
     }
   }
 
-  subscribeToAllPosts(callback) {
+  subscribeToAllPosts(callback, onError) {
     const q = query(
       collection(db, this.postsCollection),
       orderBy('createdAt', 'desc')
@@ -66,6 +66,6 @@ export class FirebasePostRepository {
     return onSnapshot(q, (snapshot) => {
       const posts = snapshot.docs.map((doc) => Post.fromFirestore(doc));
       callback(posts);
-    });
+    }, onError);
   }
 }
