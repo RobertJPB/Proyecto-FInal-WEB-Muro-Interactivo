@@ -50,10 +50,12 @@ export const useAuthActions = () => {
 };
 
 const translateFirebaseError = (msg) => {
-  if (msg.includes('email-already-in-use')) return 'Este email ya está registrado.';
-  if (msg.includes('wrong-password') || msg.includes('invalid-credential')) return 'Email o contraseña incorrectos.';
-  if (msg.includes('user-not-found')) return 'No existe una cuenta con ese email.';
-  if (msg.includes('too-many-requests')) return 'Demasiados intentos. Intenta más tarde.';
-  if (msg.includes('network-request-failed')) return 'Error de red. Verifica tu conexión.';
-  return msg;
+  if (msg.includes('email-already-in-use')) return 'Este correo electrónico ya se encuentra registrado.';
+  if (msg.includes('invalid-email')) return 'El formato del correo electrónico no es válido.';
+  if (msg.includes('wrong-password') || msg.includes('invalid-credential')) return 'Credenciales de acceso incorrectas. Verifique su correo y contraseña.';
+  if (msg.includes('user-not-found')) return 'No se ha encontrado ninguna cuenta asociada a este correo electrónico.';
+  if (msg.includes('too-many-requests')) return 'Acceso bloqueado temporalmente por demasiados intentos fallidos.';
+  if (msg.includes('network-request-failed')) return 'Error de conexión. Verifique su acceso a internet.';
+  if (msg.includes('weak-password')) return 'La contraseña es demasiado débil. Use al menos 6 caracteres.';
+  return 'Ha ocurrido un error inesperado en el proceso de autenticación.';
 };
