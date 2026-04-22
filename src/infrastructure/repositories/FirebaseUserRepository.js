@@ -108,6 +108,7 @@ export class FirebaseUserRepository {
         nombre,
         apellido,
         email: user.email,
+        photoURL: user.photoURL || null,
         createdAt: serverTimestamp(),
       };
 
@@ -125,7 +126,21 @@ export class FirebaseUserRepository {
   onAuthStateChanged(callback) {
     return onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        const user = await this.getUserById(firebaseUser.uid);
+        let user = await this.getUserById(firebaseUser.uid);
+        
+        // Si no hay documento en Firestore pero está autenticado (race condition en Google Login)
+        if (!user) {
+          user = new User({
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            nombre: firebaseUser.displayName?.split(' ')[0] || 'Usuario',
+            apellido: firebaseUser.displayName?.split(' ').slice(1).join(' ') || 'Google',
+            username: firebaseUser.email.split('@')[0],
+            photoURL: firebaseUser.photoURL,
+            createdAt: new Date()
+          });
+        }
+        
         callback(user);
       } else {
         callback(null);

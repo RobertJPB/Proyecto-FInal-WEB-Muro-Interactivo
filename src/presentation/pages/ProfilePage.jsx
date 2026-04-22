@@ -9,10 +9,8 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    if (window.confirm('¿Estás seguro de que deseas cerrar sesión?')) {
-      await logout();
-      navigate('/');
-    }
+    await logout();
+    navigate('/');
   };
 
   const [form, setForm] = useState({
