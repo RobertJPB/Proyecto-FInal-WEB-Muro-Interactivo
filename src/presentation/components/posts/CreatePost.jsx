@@ -48,7 +48,7 @@ const CreatePost = ({ onSubmit }) => {
             onChange={(e) => setContenido(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            placeholder="Escriba el contenido de su mensaje aquí..."
+            placeholder=""
             style={{
               ...styles.textarea,
               borderBottomColor: isFocused ? '#0055ff' : '#e2e2e2'
