@@ -17,6 +17,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { Post } from '../../domain/entities/Post';
+import { Comment } from '../../domain/entities/Comment';
 
 export class FirebasePostRepository {
   constructor() {
@@ -56,6 +57,25 @@ export class FirebasePostRepository {
     } else {
       await updateDoc(postRef, { likes: arrayUnion(uid) });
     }
+  }
+
+  async addComment(postId, commentData) {
+    const commentsCol = collection(db, this.postsCollection, postId, 'comments');
+    const docRef = await addDoc(commentsCol, {
+      ...commentData,
+      createdAt: serverTimestamp(),
+    });
+    return { id: docRef.id, ...commentData };
+  }
+
+  subscribeToComments(postId, callback, onError) {
+    const commentsCol = collection(db, this.postsCollection, postId, 'comments');
+    const q = query(commentsCol, orderBy('createdAt', 'asc'));
+    
+    return onSnapshot(q, (snapshot) => {
+      const comments = snapshot.docs.map(doc => Comment.fromFirestore(doc));
+      callback(comments);
+    }, onError);
   }
 
   subscribeToAllPosts(callback, onError) {

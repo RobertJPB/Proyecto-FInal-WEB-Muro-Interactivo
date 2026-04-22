@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useAuth } from '../../context/AuthContext';
+import CommentSection from './CommentSection';
 
 const PostCard = ({ post, onLike, onDelete }) => {
   const { currentUser } = useAuth();
   const isLiked = currentUser ? post.isLikedBy(currentUser.uid) : false;
   const isOwner = currentUser?.uid === post.autorUid;
   const [deleting, setDeleting] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   const handleDelete = async () => {
     if (window.confirm('¿Está seguro de que desea eliminar este mensaje?')) {
@@ -46,17 +48,30 @@ const PostCard = ({ post, onLike, onDelete }) => {
       </div>
 
       <div style={styles.footer}>
-        <button
-          onClick={() => onLike(post.id)}
-          style={{
-            ...styles.actionBtn,
-            color: isLiked ? '#000' : '#666',
-            fontWeight: isLiked ? '600' : '400',
-          }}
-        >
-          {isLiked ? 'Me gusta' : 'Me gusta'}
-          {post.getLikesCount() > 0 && <span style={styles.counter}>({post.getLikesCount()})</span>}
-        </button>
+        <div style={styles.mainActions}>
+          <button
+            onClick={() => onLike(post.id)}
+            style={{
+              ...styles.actionBtn,
+              color: isLiked ? '#0055ff' : '#666',
+              fontWeight: isLiked ? '600' : '400',
+            }}
+          >
+            {isLiked ? 'Me gusta' : 'Me gusta'}
+            {post.getLikesCount() > 0 && <span style={styles.counter}>({post.getLikesCount()})</span>}
+          </button>
+
+          <button
+            onClick={() => setShowComments(!showComments)}
+            style={{
+              ...styles.actionBtn,
+              color: showComments ? '#000' : '#666',
+              fontWeight: showComments ? '600' : '400',
+            }}
+          >
+            Comentar
+          </button>
+        </div>
 
         {isOwner && (
           <button
@@ -68,6 +83,10 @@ const PostCard = ({ post, onLike, onDelete }) => {
           </button>
         )}
       </div>
+
+      {showComments && (
+        <CommentSection postId={post.id} currentUser={currentUser} />
+      )}
     </div>
   );
 };
@@ -142,6 +161,11 @@ const styles = {
     alignItems: 'center',
     borderTop: '1px solid #f5f5f5',
     paddingTop: '16px',
+  },
+  mainActions: {
+    display: 'flex',
+    gap: '20px',
+    alignItems: 'center',
   },
   actionBtn: {
     fontSize: '13px',

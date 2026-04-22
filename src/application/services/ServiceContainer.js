@@ -16,6 +16,10 @@ import {
   ToggleLikeUseCase,
   DeletePostUseCase,
 } from '../usecases/PostUseCases';
+import {
+  AddCommentUseCase,
+  SubscribeToCommentsUseCase,
+} from '../usecases/CommentUseCases';
 
 // Repositorios (infraestructura)
 const userRepository = new FirebaseUserRepository();
@@ -32,6 +36,9 @@ export const createPostUseCase = new CreatePostUseCase(postRepository);
 export const getAllPostsUseCase = new GetAllPostsUseCase(postRepository);
 export const toggleLikeUseCase = new ToggleLikeUseCase(postRepository);
 export const deletePostUseCase = new DeletePostUseCase(postRepository);
+
+export const addCommentUseCase = new AddCommentUseCase(postRepository);
+export const subscribeToCommentsUseCase = new SubscribeToCommentsUseCase(postRepository);
 
 // Exportar repositorios para suscripciones en tiempo real
 export { userRepository, postRepository };

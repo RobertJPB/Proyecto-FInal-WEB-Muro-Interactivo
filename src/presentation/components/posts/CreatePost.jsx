@@ -31,7 +31,7 @@ const CreatePost = ({ onSubmit }) => {
     <div style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.header}>
-          <span style={styles.label}>Escribir un mensaje</span>
+          <div />
           <span style={styles.user}>Identificado como: @{currentUser.username}</span>
         </div>
 
@@ -48,7 +48,7 @@ const CreatePost = ({ onSubmit }) => {
             onChange={(e) => setContenido(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            placeholder=""
+            placeholder="Escriba el contenido de su mensaje aquí..."
             style={{
               ...styles.textarea,
               borderBottomColor: isFocused ? '#0055ff' : '#e2e2e2'
