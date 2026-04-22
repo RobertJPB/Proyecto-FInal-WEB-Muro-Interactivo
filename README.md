@@ -1,6 +1,20 @@
-# Sistema de Registro Mural
+# Muro Interactivo
 
-Plataforma técnica para el intercambio de mensajes persistentes, desarrollada bajo estándares de Clean Architecture y servicios distribuidos en la nube.
+Plataforma dedicada al intercambio de mensajes persistentes, desarrollada bajo estándares de Clean Architecture, Principios SOLID y el uso de las tecnologias Javascript
+(ES6), el framework React y los servicios en nube de Firebase para el Backend
+
+Capturas de pantalla del Sistema funcionando en la Web, tanto en Computadores como en Moviles
+
+<img width="1892" height="859" alt="image" src="https://github.com/user-attachments/assets/6123b095-13d6-4835-8ab7-2f10d7ddc634" />
+<img width="1890" height="875" alt="image" src="https://github.com/user-attachments/assets/58480375-58e9-4c59-9e89-6b4ad95d91cc" />
+<img width="1592" height="861" alt="image" src="https://github.com/user-attachments/assets/bb990228-e7f5-4820-af21-68d3c7310db2" />
+<img width="1492" height="866" alt="image" src="https://github.com/user-attachments/assets/b00ab9bd-588e-464f-819d-8dcee11602d1" />
+<img width="1019" height="708" alt="image" src="https://github.com/user-attachments/assets/478f22ff-5457-4393-b987-bbd07069153e" />
+
+
+
+
+
 
 ## Requisitos del Sistema
 
