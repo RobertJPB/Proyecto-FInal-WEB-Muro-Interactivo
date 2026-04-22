@@ -32,14 +32,14 @@ const RegisterPage = () => {
   return (
     <div style={styles.page}>
       <div style={styles.container} className="animate-fadeUp">
-        <h1 style={styles.title}>registro.</h1>
+        <h1 style={styles.title}>Registro</h1>
         <p style={styles.sub}>
-          ¿ya tienes cuenta? <Link to="/login" style={styles.link}>entra aquí.</Link>
+          ¿Ya tiene una cuenta? <Link to="/login" style={styles.link}>Entre aquí</Link>
         </p>
 
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.field}>
-            <label style={styles.label}>nombre de usuario</label>
+            <label style={styles.label}>Nombre de usuario</label>
             <input
               type="text"
               name="username"
@@ -53,7 +53,7 @@ const RegisterPage = () => {
 
           <div style={styles.row}>
             <div style={styles.field}>
-              <label style={styles.label}>nombre</label>
+              <label style={styles.label}>Nombre</label>
               <input
                 type="text"
                 name="nombre"
@@ -65,7 +65,7 @@ const RegisterPage = () => {
               />
             </div>
             <div style={styles.field}>
-              <label style={styles.label}>apellido</label>
+              <label style={styles.label}>Apellido</label>
               <input
                 type="text"
                 name="apellido"
@@ -79,7 +79,7 @@ const RegisterPage = () => {
           </div>
 
           <div style={styles.field}>
-            <label style={styles.label}>email</label>
+            <label style={styles.label}>Email</label>
             <input
               type="email"
               name="email"
@@ -92,16 +92,30 @@ const RegisterPage = () => {
           </div>
 
           <div style={styles.field}>
-            <label style={styles.label}>contraseña</label>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              placeholder="mínimo 6 caracteres"
-              required
-              style={styles.input}
-            />
+            <label style={styles.label}>Contraseña</label>
+            <div style={styles.passWrap}>
+              <input
+                type={showPass ? 'text' : 'password'}
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="Mínimo 6 caracteres"
+                required
+                style={styles.input}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass((v) => !v)}
+                style={styles.toggleBtn}
+                tabIndex={-1}
+              >
+                {showPass ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                )}
+              </button>
+            </div>
           </div>
 
           <button
@@ -109,7 +123,7 @@ const RegisterPage = () => {
             disabled={loading}
             style={{ ...styles.submitBtn, opacity: loading ? 0.3 : 1 }}
           >
-            {loading ? 'creando...' : 'crear mi cuenta'}
+            {loading ? 'Preparando registro...' : 'Registrar mi cuenta'}
           </button>
         </form>
       </div>
@@ -141,9 +155,8 @@ const styles = {
   },
   sub: {
     fontSize: '14px',
-    color: '#888888',
-    marginBottom: '48px',
-    textTransform: 'lowercase',
+    color: '#666666',
+    marginBottom: '40px',
   },
   link: {
     color: '#000000',
@@ -160,6 +173,20 @@ const styles = {
     letterSpacing: '0.15em', 
     textTransform: 'uppercase' 
   },
+  passWrap: { position: 'relative' },
+  toggleBtn: {
+    position: 'absolute',
+    right: '0',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    color: '#888',
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0',
+  },
   input: {
     padding: '12px 0',
     background: 'transparent',
@@ -169,7 +196,7 @@ const styles = {
     borderRight: 'none',
     color: '#000000',
     fontSize: '15px',
-    fontFamily: 'DM Sans, sans-serif',
+    fontFamily: 'Inter, sans-serif',
     outline: 'none',
     transition: 'border-color 0.2s',
     width: '100%',

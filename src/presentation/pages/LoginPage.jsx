@@ -27,14 +27,14 @@ const LoginPage = () => {
   return (
     <div style={styles.page}>
       <div style={styles.container} className="animate-fadeUp">
-        <h1 style={styles.title}>entrar.</h1>
+        <h1 style={styles.title}>Iniciar Sesión</h1>
         <p style={styles.sub}>
-          ¿nuevo aquí? <Link to="/register" style={styles.link}>crear una cuenta.</Link>
+          ¿Es nuevo aquí? <Link to="/register" style={styles.link}>Cree una cuenta</Link>
         </p>
 
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.field}>
-            <label style={styles.label}>email</label>
+            <label style={styles.label}>Email</label>
             <input
               type="email"
               name="email"
@@ -47,7 +47,7 @@ const LoginPage = () => {
           </div>
 
           <div style={styles.field}>
-            <label style={styles.label}>contraseña</label>
+            <label style={styles.label}>Contraseña</label>
             <div style={styles.passWrap}>
               <input
                 type={showPass ? 'text' : 'password'}
@@ -64,7 +64,11 @@ const LoginPage = () => {
                 style={styles.toggleBtn}
                 tabIndex={-1}
               >
-                {showPass ? 'ocultar' : 'ver'}
+                {showPass ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                )}
               </button>
             </div>
           </div>
@@ -74,7 +78,7 @@ const LoginPage = () => {
             disabled={loading}
             style={{ ...styles.submitBtn, opacity: loading ? 0.3 : 1 }}
           >
-            {loading ? 'entrando...' : 'acceder al muro'}
+            {loading ? 'Accediendo...' : 'Ingresar al sistema'}
           </button>
         </form>
       </div>
