@@ -6,13 +6,7 @@ import { useAuthActions } from '../../../application/hooks/useAuthActions';
 
 const Navbar = () => {
   const { currentUser } = useAuth();
-  const { logout } = useAuthActions();
   const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    await logout();
-    navigate('/');
-  };
 
   return (
     <nav style={styles.nav}>
@@ -39,9 +33,6 @@ const Navbar = () => {
                   Mi Perfil
                 </span>
               </Link>
-              <button onClick={handleLogout} style={styles.btnLogout}>
-                Cerrar sesión
-              </button>
             </>
           ) : (
             <>
@@ -57,7 +48,7 @@ const Navbar = () => {
 
 const styles = {
   nav: {
-    height: '64px',
+    height: '80px',
     background: '#ffffff',
     borderBottom: '1px solid #e2e2e2',
     display: 'flex',
@@ -68,9 +59,9 @@ const styles = {
   },
   container: {
     width: '100%',
-    maxWidth: '1000px',
+    maxWidth: '1200px',
     margin: '0 auto',
-    padding: '0 24px',
+    padding: '0 40px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -82,10 +73,10 @@ const styles = {
   },
   logoPrimary: {
     fontFamily: 'Outfit, sans-serif',
-    fontSize: '22px',
+    fontSize: '28px',
     fontWeight: 700,
     color: '#000000',
-    letterSpacing: '-0.5px',
+    letterSpacing: '-1px',
   },
   logoSecondary: {
     fontFamily: 'Inter, sans-serif',
@@ -106,39 +97,28 @@ const styles = {
     textDecoration: 'none',
   },
   miniAvatar: {
-    width: '32px',
-    height: '32px',
+    width: '40px',
+    height: '40px',
+    border: '2px solid #f0f0f0',
     borderRadius: '50%',
     objectFit: 'cover',
   },
   miniPlaceholder: {
-    width: '32px',
-    height: '32px',
+    width: '40px',
+    height: '40px',
     borderRadius: '50%',
     background: '#0055ff',
     color: '#fff',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '12px',
+    fontSize: '14px',
     fontWeight: 700,
   },
   user: {
-    fontSize: '14px',
-    fontWeight: 500,
-    color: '#333',
-  },
-  btnLogout: {
-    fontSize: '14px',
+    fontSize: '16px',
+    fontWeight: 600,
     color: '#000',
-    textDecoration: 'none',
-    fontWeight: 500,
-    cursor: 'pointer',
-    background: 'none',
-    border: 'none',
-    padding: 0,
-    marginLeft: '8px',
-    opacity: 0.7,
   },
   link: {
     fontSize: '14px',

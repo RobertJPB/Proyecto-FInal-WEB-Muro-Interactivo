@@ -5,8 +5,15 @@ import { useAuthActions } from '../../application/hooks/useAuthActions';
 
 const ProfilePage = () => {
   const { currentUser } = useAuth();
-  const { updateProfile, loading } = useAuthActions();
+  const { updateProfile, logout, loading } = useAuthActions();
   const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    if (window.confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+      await logout();
+      navigate('/');
+    }
+  };
 
   const [form, setForm] = useState({
     nombre: '',
@@ -130,6 +137,19 @@ const ProfilePage = () => {
             </button>
           </div>
         </form>
+
+        <div style={styles.divider}></div>
+
+        <div style={styles.logoutSection}>
+          <button
+            type="button"
+            onClick={handleLogout}
+            style={styles.logoutBtn}
+            disabled={loading}
+          >
+            Cerrar Sesión
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -246,9 +266,27 @@ const styles = {
     border: '1px solid #e2e2e2',
     padding: '14px',
     borderRadius: '8px',
-    fontSize: '14px',
     fontWeight: 600,
     cursor: 'pointer',
+  },
+  divider: {
+    height: '1px',
+    backgroundColor: '#eee',
+    margin: '40px 0',
+  },
+  logoutSection: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  logoutBtn: {
+    background: 'none',
+    border: 'none',
+    color: '#d32f2f',
+    fontSize: '16px',
+    fontWeight: 700,
+    cursor: 'pointer',
+    padding: '10px 20px',
+    transition: 'opacity 0.2s',
   },
 };
 
