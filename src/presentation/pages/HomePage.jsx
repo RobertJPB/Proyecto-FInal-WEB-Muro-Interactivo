@@ -21,7 +21,6 @@ const HomePage = () => {
           
           {!currentUser && (
             <div style={styles.guestCta}>
-              <span style={styles.guestText}>Vista pública.</span>
               <Link to="/login" style={styles.btnSecondary}>Inicia sesión para participar</Link>
             </div>
           )}
