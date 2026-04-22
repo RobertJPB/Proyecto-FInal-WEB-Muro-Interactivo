@@ -36,7 +36,7 @@ const Navbar = () => {
                   </div>
                 )}
                 <span style={styles.user}>
-                  {currentUser.username}
+                  Mi Perfil
                 </span>
               </Link>
               <button onClick={handleLogout} style={styles.btnLogout}>
