@@ -16,6 +16,7 @@ const RegisterPage = () => {
     email: '',
     password: '',
   });
+  const [showPass, setShowPass] = useState(false);
 
   useEffect(() => {
     if (currentUser) navigate('/');
@@ -45,7 +46,7 @@ const RegisterPage = () => {
               name="username"
               value={form.username}
               onChange={handleChange}
-              placeholder="como te llamarán"
+              placeholder="Ej: jperez88"
               required
               style={styles.input}
             />
@@ -59,7 +60,7 @@ const RegisterPage = () => {
                 name="nombre"
                 value={form.nombre}
                 onChange={handleChange}
-                placeholder="juan"
+                placeholder="Juan"
                 required
                 style={styles.input}
               />
@@ -71,7 +72,7 @@ const RegisterPage = () => {
                 name="apellido"
                 value={form.apellido}
                 onChange={handleChange}
-                placeholder="perez"
+                placeholder="Pérez"
                 required
                 style={styles.input}
               />
@@ -85,7 +86,7 @@ const RegisterPage = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="tu@email.com"
+              placeholder="juan.perez@ejemplo.com"
               required
               style={styles.input}
             />

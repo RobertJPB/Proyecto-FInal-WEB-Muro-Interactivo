@@ -18,7 +18,9 @@ const Navbar = () => {
     <nav style={styles.nav}>
       <div style={styles.container}>
         <Link to="/" style={styles.logoContainer}>
-          <span style={styles.logoPrimary}>RobertBook</span>
+          <span style={styles.logoPrimary}>
+            Robert<span style={{ color: '#0055ff' }}>Book</span>
+          </span>
           <span style={styles.logoSecondary}>muro interactivo</span>
         </Link>
 

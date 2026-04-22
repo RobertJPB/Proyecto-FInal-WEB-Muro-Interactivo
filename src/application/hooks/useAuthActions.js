@@ -57,5 +57,7 @@ const translateFirebaseError = (msg) => {
   if (msg.includes('too-many-requests')) return 'Acceso bloqueado temporalmente por demasiados intentos fallidos.';
   if (msg.includes('network-request-failed')) return 'Error de conexión. Verifique su acceso a internet.';
   if (msg.includes('weak-password')) return 'La contraseña es demasiado débil. Use al menos 6 caracteres.';
-  return 'Ha ocurrido un error inesperado en el proceso de autenticación.';
+  
+  // Si es un error desconocido, devolvemos el mensaje técnico original para facilitar el diagnóstico
+  return `Error de sistema: ${msg}`;
 };

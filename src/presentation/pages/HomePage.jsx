@@ -15,7 +15,7 @@ const HomePage = () => {
       <header style={styles.header}>
         <div style={styles.container}>
           <div style={styles.brandSection}>
-            <h1 style={styles.title}>RobertBook</h1>
+            <h1 style={styles.title}>Muro de Mensajes</h1>
             <span style={styles.stats}>{posts.length} Mensajes</span>
           </div>
           
