@@ -12,7 +12,8 @@ Capturas de pantalla del Sistema funcionando en la Web, tanto en Computadores co
 <img width="1592" height="861" alt="image" src="https://github.com/user-attachments/assets/bb990228-e7f5-4820-af21-68d3c7310db2" />
 <img width="1895" height="865" alt="image" src="https://github.com/user-attachments/assets/82413b8a-9936-45e8-8307-cb7ac0e93cd2" />
 <img width="1019" height="708" alt="image" src="https://github.com/user-attachments/assets/478f22ff-5457-4393-b987-bbd07069153e" />
-<img width="786" height="1600" alt="image" src="https://github.com/user-attachments/assets/8726febb-e0ad-4090-8daf-9d2f8faca0f5" />
+<img width="786" height="859" alt="61aecf06-cecc-40c1-844d-c1eee8f0bdd6" src="https://github.com/user-attachments/assets/404696c9-2b38-4238-9bd5-8c7d1fc73142" />
+
 
 ## Requisitos Funcionales del Sistema
 
