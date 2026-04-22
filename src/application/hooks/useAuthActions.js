@@ -1,5 +1,6 @@
 // src/application/hooks/useAuthActions.js
 import { useState } from 'react';
+import { useAuth } from '../../presentation/context/AuthContext';
 import {
   registerUserUseCase,
   loginUserUseCase,
@@ -11,6 +12,7 @@ import toast from 'react-hot-toast';
 
 export const useAuthActions = () => {
   const [loading, setLoading] = useState(false);
+  const { setCurrentUser } = useAuth();
 
   const register = async (formData) => {
     setLoading(true);
@@ -61,7 +63,8 @@ export const useAuthActions = () => {
   const updateProfile = async (uid, data) => {
     setLoading(true);
     try {
-      await updateProfileUseCase.execute(uid, data);
+      const updatedUser = await updateProfileUseCase.execute(uid, data);
+      setCurrentUser(updatedUser);
       toast.success('Perfil actualizado correctamente.');
       return true;
     } catch (err) {

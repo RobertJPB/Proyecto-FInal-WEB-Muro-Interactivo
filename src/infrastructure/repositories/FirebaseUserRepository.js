@@ -19,6 +19,8 @@ import {
   getDocs,
   serverTimestamp,
   updateDoc,
+  writeBatch,
+  collectionGroup,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { auth, db, storage } from '../firebase/firebaseConfig';
@@ -85,6 +87,33 @@ export class FirebaseUserRepository {
     if (photoURL) updates.photoURL = photoURL;
 
     await updateDoc(userRef, updates);
+
+    // --- Sincronización en cascada ---
+    // 1. Actualizar Posts
+    try {
+      const postsQuery = query(collection(db, 'posts'), where('autorUid', '==', uid));
+      const postsSnap = await getDocs(postsQuery);
+      const batch = writeBatch(db);
+      
+      postsSnap.forEach((postDoc) => {
+        batch.update(postDoc.ref, { autorPhotoURL: photoURL || updates.photoURL || null });
+      });
+      
+      // 2. Actualizar Comentarios (Usando collectionGroup)
+      // Nota: Esto podría requerir un índice en Firebase, si falla lo capturamos
+      const commentsQuery = query(collectionGroup(db, 'comments'), where('autorUid', '==', uid));
+      const commentsSnap = await getDocs(commentsQuery);
+      
+      commentsSnap.forEach((commentDoc) => {
+        batch.update(commentDoc.ref, { autorPhotoURL: photoURL || updates.photoURL || null });
+      });
+
+      await batch.commit();
+    } catch (syncError) {
+      console.warn('Error en la sincronización en cascada:', syncError);
+      // No lanzamos error para que el perfil al menos se guarde
+    }
+
     return await this.getUserById(uid);
   }
 

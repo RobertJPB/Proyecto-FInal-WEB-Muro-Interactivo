@@ -12,8 +12,12 @@ const CommentItem = ({ comment, onLike, onDelete, currentUser }) => {
   return (
     <div style={styles.item}>
       <div style={styles.avatar}>
-        {comment.autorPhotoURL ? (
-          <img src={comment.autorPhotoURL} alt="Author" style={styles.avatarImg} />
+        {((isOwner && currentUser?.photoURL) || comment.autorPhotoURL) ? (
+          <img 
+            src={(isOwner && currentUser?.photoURL) ? currentUser.photoURL : comment.autorPhotoURL} 
+            alt="Author" 
+            style={styles.avatarImg} 
+          />
         ) : (
           <span>{comment.autorNombre ? comment.autorNombre.charAt(0).toUpperCase() : '?'}</span>
         )}
