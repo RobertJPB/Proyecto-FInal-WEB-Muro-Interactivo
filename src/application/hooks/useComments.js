@@ -1,6 +1,11 @@
 // src/application/hooks/useComments.js
 import { useState, useEffect } from 'react';
-import { addCommentUseCase, subscribeToCommentsUseCase } from '../services/ServiceContainer';
+import { 
+  addCommentUseCase, 
+  subscribeToCommentsUseCase, 
+  toggleCommentLikeUseCase,
+  deleteCommentUseCase,
+} from '../services/ServiceContainer';
 import toast from 'react-hot-toast';
 
 export const useComments = (postId, currentUser) => {
@@ -36,5 +41,22 @@ export const useComments = (postId, currentUser) => {
     }
   };
 
-  return { comments, loading, addComment };
+  const toggleLikeComment = async (commentId) => {
+    try {
+      await toggleCommentLikeUseCase.execute(postId, commentId, currentUser);
+    } catch (err) {
+      toast.error(err.message || 'Error al reaccionar al comentario');
+    }
+  };
+
+  const deleteComment = async (commentId, comentarioAutorUid) => {
+    try {
+      await deleteCommentUseCase.execute(postId, commentId, currentUser?.uid, comentarioAutorUid);
+      toast.success('Comentario eliminado.');
+    } catch (err) {
+      toast.error(err.message || 'Error al eliminar el comentario');
+    }
+  };
+
+  return { comments, loading, addComment, toggleLikeComment, deleteComment };
 };

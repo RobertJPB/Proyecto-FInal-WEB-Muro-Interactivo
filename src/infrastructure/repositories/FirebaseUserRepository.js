@@ -70,9 +70,14 @@ export class FirebaseUserRepository {
     let photoURL = null;
 
     if (photoFile) {
-      const storageRef = ref(storage, `avatars/${uid}`);
-      await uploadBytes(storageRef, photoFile);
-      photoURL = await getDownloadURL(storageRef);
+      try {
+        const storageRef = ref(storage, `avatars/${uid}`);
+        await uploadBytes(storageRef, photoFile);
+        photoURL = await getDownloadURL(storageRef);
+      } catch (error) {
+        console.error('Error uploading avatar:', error);
+        throw new Error('No se pudo subir la imagen. Verifique la configuración de Firebase Storage.');
+      }
     }
 
     const userRef = doc(db, this.usersCollection, uid);

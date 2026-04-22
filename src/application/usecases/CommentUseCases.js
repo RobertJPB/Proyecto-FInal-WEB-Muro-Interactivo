@@ -34,3 +34,26 @@ export class SubscribeToCommentsUseCase {
     return this.postRepository.subscribeToComments(postId, callback, onError);
   }
 }
+
+export class ToggleCommentLikeUseCase {
+  constructor(postRepository) {
+    this.postRepository = postRepository;
+  }
+
+  async execute(postId, commentId, autor) {
+    if (!autor) throw new Error('Debes iniciar sesión para dar me gusta.');
+    return await this.postRepository.toggleCommentLike(postId, commentId, autor.uid);
+  }
+}
+
+export class DeleteCommentUseCase {
+  constructor(postRepository) {
+    this.postRepository = postRepository;
+  }
+
+  async execute(postId, commentId, uid, comentarioAutorUid) {
+    if (!uid) throw new Error('Debes iniciar sesión para eliminar comentarios.');
+    if (uid !== comentarioAutorUid) throw new Error('Solo puedes eliminar tus propios comentarios.');
+    return await this.postRepository.deleteComment(postId, commentId);
+  }
+}

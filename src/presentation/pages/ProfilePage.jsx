@@ -112,7 +112,7 @@ const ProfilePage = () => {
             <input
               type="text"
               value={`@${currentUser.username}`}
-              style={{ ...styles.input, background: '#f5f5f5', color: '#999', cursor: 'not-allowed' }}
+              style={{ ...styles.input, background: 'rgba(255,255,255,0.05)', color: 'var(--text-muted)', cursor: 'not-allowed', paddingLeft: '8px' }}
               disabled
             />
           </div>
@@ -158,7 +158,8 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     padding: '40px 20px',
-    background: '#ffffff',
+    background: 'var(--bg)',
+    minHeight: 'calc(100vh - 64px)',
   },
   container: {
     width: '100%',
@@ -169,11 +170,11 @@ const styles = {
     fontSize: '32px',
     fontWeight: 700,
     marginBottom: '8px',
-    color: '#000',
+    color: 'var(--text)',
   },
   sub: {
     fontSize: '14px',
-    color: '#888',
+    color: 'var(--text-muted)',
     marginBottom: '40px',
   },
   form: {
@@ -193,12 +194,12 @@ const styles = {
     height: '120px',
     borderRadius: '50%',
     overflow: 'hidden',
-    backgroundColor: '#0055ff',
+    backgroundColor: 'var(--accent)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    border: '4px solid #f9f9f9',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+    border: '4px solid var(--border)',
+    boxShadow: 'var(--shadow-sm)',
   },
   avatarImg: {
     width: '100%',
@@ -213,7 +214,7 @@ const styles = {
   fileLabel: {
     fontSize: '13px',
     fontWeight: 600,
-    color: '#0055ff',
+    color: 'var(--accent)',
     cursor: 'pointer',
     textDecoration: 'underline',
   },
@@ -229,16 +230,18 @@ const styles = {
     fontSize: '11px',
     fontWeight: 700,
     textTransform: 'uppercase',
-    color: '#999',
+    color: 'var(--text-muted)',
     letterSpacing: '1px',
   },
   input: {
     padding: '12px 0',
     border: 'none',
-    borderBottom: '2px solid #e2e2e2',
+    borderBottom: '2px solid var(--border)',
     fontSize: '16px',
     fontFamily: 'Inter, sans-serif',
     outline: 'none',
+    background: 'transparent',
+    color: 'var(--text)',
     transition: 'border-color 0.2s',
   },
   actions: {
@@ -248,11 +251,11 @@ const styles = {
   },
   saveBtn: {
     flex: 2,
-    background: '#000',
+    background: 'var(--accent)',
     color: '#fff',
     padding: '14px',
     border: 'none',
-    borderRadius: '8px',
+    borderRadius: 'var(--radius)',
     fontSize: '14px',
     fontWeight: 600,
     cursor: 'pointer',
@@ -261,15 +264,16 @@ const styles = {
   cancelBtn: {
     flex: 1,
     background: 'none',
-    border: '1px solid #e2e2e2',
+    border: '1px solid var(--border)',
+    color: 'var(--text)',
     padding: '14px',
-    borderRadius: '8px',
+    borderRadius: 'var(--radius)',
     fontWeight: 600,
     cursor: 'pointer',
   },
   divider: {
     height: '1px',
-    backgroundColor: '#eee',
+    backgroundColor: 'var(--border)',
     margin: '40px 0',
   },
   logoutSection: {
@@ -279,7 +283,7 @@ const styles = {
   logoutBtn: {
     background: 'none',
     border: 'none',
-    color: '#d32f2f',
+    color: '#ff4d4f',
     fontSize: '16px',
     fontWeight: 700,
     cursor: 'pointer',

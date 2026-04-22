@@ -59,11 +59,11 @@ const HomePage = () => {
 };
 
 const styles = {
-  page: { minHeight: '100vh', background: '#ffffff' },
+  page: { minHeight: '100vh', background: 'var(--bg)' },
   header: {
     padding: '24px 0',
-    borderBottom: '1px solid #000000',
-    background: '#ffffff',
+    borderBottom: '1px solid var(--border)',
+    background: 'var(--bg)',
     marginBottom: '24px',
   },
   container: {
@@ -79,27 +79,29 @@ const styles = {
   title: {
     fontSize: '24px',
     fontWeight: '700',
-    color: '#000',
+    color: 'var(--text)',
     letterSpacing: '-0.5px',
   },
   stats: {
     fontSize: '12px',
-    color: '#666',
+    color: 'var(--text-muted)',
     fontWeight: '500',
   },
   guestCta: {
     marginTop: '16px',
     padding: '12px 16px',
-    background: '#f8f8f8',
+    background: 'var(--bg-subtle)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 'var(--radius)',
   },
-  guestText: { fontSize: '13px', fontWeight: '600' },
+  guestText: { fontSize: '13px', fontWeight: '600', color: 'var(--text)' },
   btnSecondary: {
     fontSize: '12px',
     fontWeight: '700',
     textDecoration: 'underline',
+    color: 'var(--text)',
   },
   creationArea: { marginBottom: '32px' },
   feedArea: { paddingTop: '8px' },
@@ -114,16 +116,22 @@ const styles = {
     fontWeight: '700',
     textTransform: 'uppercase',
     letterSpacing: '0.05em',
-    color: '#333',
+    color: 'var(--text-muted)',
   },
   statusBox: {
     padding: '60px 0',
     textAlign: 'center',
     fontSize: '14px',
-    color: '#999',
-    border: '1px dashed #eee',
+    color: 'var(--text-muted)',
+    border: '1px dashed var(--border)',
+    borderRadius: 'var(--radius)',
   },
-  feedGrid: { display: 'flex', flexDirection: 'column', gap: '1px', background: '#eee' }, // Líneas divisorias finas
+  feedGrid: { 
+    display: 'flex', 
+    flexDirection: 'column', 
+    gap: '12px', 
+    background: 'transparent' 
+  },
 };
 
 export default HomePage;

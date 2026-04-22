@@ -51,7 +51,7 @@ const CreatePost = ({ onSubmit }) => {
             placeholder="Escriba el contenido de su mensaje aquí..."
             style={{
               ...styles.textarea,
-              borderBottomColor: isFocused ? '#0055ff' : '#e2e2e2'
+              borderBottomColor: isFocused ? 'var(--accent)' : 'var(--border)'
             }}
             rows={3}
             disabled={loading}
@@ -83,12 +83,12 @@ const CreatePost = ({ onSubmit }) => {
 
 const styles = {
   container: {
-    background: '#ffffff',
-    border: '1px solid #f0f0f0',
-    borderRadius: '12px',
-    padding: '24px',
-    marginBottom: '40px',
-    boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+    background: 'var(--bg-subtle)',
+    border: '1px solid var(--border)',
+    borderRadius: 'var(--radius)',
+    padding: '20px 16px',
+    marginBottom: '32px',
+    boxShadow: 'var(--shadow-sm)',
     transition: 'all 0.3s ease',
   },
   form: {
@@ -104,12 +104,12 @@ const styles = {
     fontSize: '11px',
     fontWeight: '700',
     textTransform: 'uppercase',
-    color: '#999',
+    color: 'var(--text-muted)',
     letterSpacing: '1px',
   },
   user: {
     fontSize: '11px',
-    color: '#bbb',
+    color: 'var(--text-muted)',
     fontWeight: '500',
   },
   inputSection: {
@@ -122,7 +122,7 @@ const styles = {
     width: '36px',
     height: '36px',
     borderRadius: '50%',
-    background: '#0055ff',
+    background: 'var(--accent)',
     color: '#ffffff',
     display: 'flex',
     alignItems: 'center',
@@ -141,12 +141,13 @@ const styles = {
     width: '100%',
     padding: '4px 0',
     border: 'none',
-    borderBottom: '2px solid #e2e2e2',
-    fontSize: '18px',
+    borderBottom: '2px solid var(--border)',
+    fontSize: '15px',
     fontFamily: 'Inter, sans-serif',
     outline: 'none',
     resize: 'none',
-    color: '#000',
+    color: 'var(--text)',
+    background: 'transparent',
     transition: 'border-color 0.2s ease',
   },
   footer: {
@@ -154,20 +155,23 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: '8px',
+    flexWrap: 'wrap',
+    gap: '8px',
   },
   counter: {
     fontSize: '12px',
     fontWeight: '500',
   },
   btn: {
-    background: '#000',
-    color: '#fff',
-    padding: '12px 32px',
+    background: 'var(--accent)',
+    color: '#ffffff',
+    padding: '10px 28px',
     fontSize: '13px',
     fontWeight: '600',
-    borderRadius: '6px',
+    borderRadius: 'var(--radius)',
     cursor: 'pointer',
     transition: 'transform 0.1s ease',
+    flexShrink: 0,
   },
 };
 

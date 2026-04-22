@@ -10,15 +10,15 @@ const Navbar = () => {
 
   return (
     <nav style={styles.nav}>
-      <div style={styles.container}>
+      <div style={styles.container} className="nav-container">
         <Link to="/" style={styles.logoContainer}>
-          <span style={styles.logoPrimary}>
+          <span style={styles.logoPrimary} className="logo-primary">
             Robert<span style={{ color: '#0055ff' }}>Book</span>
           </span>
-          <span style={styles.logoSecondary}>muro interactivo</span>
+          <span style={styles.logoSecondary} className="logo-secondary">muro interactivo</span>
         </Link>
 
-        <div style={styles.actions}>
+        <div style={styles.actions} className="nav-actions">
           {currentUser ? (
             <>
               <Link to="/perfil" style={styles.userContainer}>
@@ -36,7 +36,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to="/login" style={styles.link}>Iniciar sesión</Link>
+              <Link to="/login" style={styles.link} className="nav-link">Iniciar sesión</Link>
               <Link to="/register" style={styles.btnRegister}>Registrarse</Link>
             </>
           )}
@@ -48,9 +48,9 @@ const Navbar = () => {
 
 const styles = {
   nav: {
-    height: '80px',
-    background: '#ffffff',
-    borderBottom: '1px solid #e2e2e2',
+    height: '64px',
+    background: 'var(--bg)',
+    borderBottom: '1px solid var(--border)',
     display: 'flex',
     alignItems: 'center',
     position: 'sticky',
@@ -65,30 +65,31 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: '16px',
   },
   logoContainer: {
     display: 'flex',
     flexDirection: 'column',
     lineHeight: '1.1',
+    flexShrink: 0,
   },
   logoPrimary: {
     fontFamily: 'Outfit, sans-serif',
     fontSize: '28px',
     fontWeight: 700,
-    color: '#000000',
-    letterSpacing: '-1px',
+    color: 'var(--text)',
   },
   logoSecondary: {
     fontFamily: 'Inter, sans-serif',
     fontSize: '11px',
     fontWeight: 500,
-    color: '#666666',
-    textTransform: 'lowercase',
+    color: 'var(--text-muted)',
   },
   actions: {
     display: 'flex',
     alignItems: 'center',
-    gap: '24px',
+    gap: '16px',
+    flexShrink: 0,
   },
   userContainer: {
     display: 'flex',
@@ -99,7 +100,7 @@ const styles = {
   miniAvatar: {
     width: '40px',
     height: '40px',
-    border: '2px solid #f0f0f0',
+    border: '2px solid var(--border)',
     borderRadius: '50%',
     objectFit: 'cover',
   },
@@ -107,7 +108,7 @@ const styles = {
     width: '40px',
     height: '40px',
     borderRadius: '50%',
-    background: '#0055ff',
+    background: 'var(--accent)',
     color: '#fff',
     display: 'flex',
     alignItems: 'center',
@@ -118,18 +119,20 @@ const styles = {
   user: {
     fontSize: '16px',
     fontWeight: 600,
-    color: '#000',
+    color: 'var(--text)',
   },
   link: {
     fontSize: '14px',
-    color: '#000',
+    color: 'var(--accent)',
+    fontWeight: '600',
   },
   btnRegister: {
-    background: '#000',
+    background: 'var(--accent)',
     color: '#fff',
     padding: '8px 16px',
     fontSize: '14px',
-    fontWeight: 500,
+    fontWeight: '600',
+    borderRadius: 'var(--radius)',
   },
 };
 

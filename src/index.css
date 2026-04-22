@@ -2,14 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --bg: #ffffff;
-  --bg-subtle: #f9f9f9;
-  --border: #e2e2e2;
-  --text: #111111;
-  --text-muted: #666666;
-  --accent: #000000;
-  --radius: 0px;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --bg: #15202b;
+  --bg-subtle: #192734;
+  --border: #38444d;
+  --text: #ffffff;
+  --text-muted: #8899a6;
+  --accent: #0055ff;
+  --radius: 8px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
   --transition: all 0.2s ease-in-out;
 }
 
@@ -66,5 +66,26 @@ a {
   font-size: 14px;
 }
 
-/* Eliminación de estilos artísticos previos */
-* { text-transform: none !important; letter-spacing: normal !important; }
+/* Responsive Navbar */
+@media (max-width: 600px) {
+  .nav-container {
+    padding: 0 16px !important;
+  }
+  .logo-primary {
+    font-size: 20px !important;
+  }
+  .logo-secondary {
+    display: none;
+  }
+  .nav-actions {
+    gap: 10px !important;
+  }
+  .nav-link {
+    font-size: 13px !important;
+  }
+}
+
+/* Evitar estilos tipográficos genéricos no deseados solo en body/párrafos */
+body, p, span, li, td, th {
+  text-transform: none;
+}

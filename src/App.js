@@ -31,20 +31,20 @@ const LoadingScreen = () => (
     justifyContent: 'center',
     flexDirection: 'column',
     gap: '16px',
-    background: '#ffffff',
+    background: 'var(--bg)',
   }}>
     <div style={{
       fontFamily: 'Outfit, sans-serif',
       fontSize: '32px',
       fontWeight: 700,
-      color: '#000000',
+      color: 'var(--text)',
       marginBottom: '12px',
     }}>
       Muro Interactivo
     </div>
     <div style={{
       fontSize: '14px',
-      color: '#666666',
+      color: 'var(--text-muted)',
       marginBottom: '40px',
     }}>
       Cargando...

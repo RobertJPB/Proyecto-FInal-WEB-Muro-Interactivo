@@ -19,6 +19,8 @@ import {
 import {
   AddCommentUseCase,
   SubscribeToCommentsUseCase,
+  ToggleCommentLikeUseCase,
+  DeleteCommentUseCase,
 } from '../usecases/CommentUseCases';
 
 // Repositorios (infraestructura)
@@ -39,6 +41,8 @@ export const deletePostUseCase = new DeletePostUseCase(postRepository);
 
 export const addCommentUseCase = new AddCommentUseCase(postRepository);
 export const subscribeToCommentsUseCase = new SubscribeToCommentsUseCase(postRepository);
+export const toggleCommentLikeUseCase = new ToggleCommentLikeUseCase(postRepository);
+export const deleteCommentUseCase = new DeleteCommentUseCase(postRepository);
 
 // Exportar repositorios para suscripciones en tiempo real
 export { userRepository, postRepository };

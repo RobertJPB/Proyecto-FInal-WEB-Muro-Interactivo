@@ -3,10 +3,16 @@ import React, { useState } from 'react';
 import { useComments } from '../../../application/hooks/useComments';
 import CommentItem from './CommentItem';
 
-const CommentSection = React.forwardRef(({ postId, currentUser }, ref) => {
-  const { comments, loading, addComment } = useComments(postId, currentUser);
+const CommentSection = React.forwardRef(({ postId, currentUser, onCountChange, isForced }, ref) => {
+  const { comments, loading, addComment, toggleLikeComment, deleteComment } = useComments(postId, currentUser);
   const [newComment, setNewComment] = useState('');
   const [submitting, setSubmitting] = useState(false);
+
+  React.useEffect(() => {
+    if (onCountChange) {
+      onCountChange(comments.length);
+    }
+  }, [comments.length, onCountChange]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +24,8 @@ const CommentSection = React.forwardRef(({ postId, currentUser }, ref) => {
     setSubmitting(false);
   };
 
+  if (!isForced && !loading && comments.length === 0) return null;
+
   return (
     <div style={styles.section}>
       <div style={styles.list}>
@@ -28,7 +36,15 @@ const CommentSection = React.forwardRef(({ postId, currentUser }, ref) => {
             {currentUser ? 'Sé el primero en comentar.' : 'Aún no hay comentarios.'}
           </div>
         ) : (
-          comments.map(c => <CommentItem key={c.id} comment={c} />)
+          comments.map(c => (
+            <CommentItem 
+              key={c.id} 
+              comment={c} 
+              onLike={() => toggleLikeComment(c.id)}
+              onDelete={() => deleteComment(c.id, c.autorUid)}
+              currentUser={currentUser}
+            />
+          ))
         )}
       </div>
 
@@ -60,40 +76,45 @@ const styles = {
   section: {
     marginTop: '16px',
     padding: '16px',
-    background: '#fcfcfc',
-    borderRadius: '12px',
-    border: '1px solid #f0f0f0',
+    background: 'var(--bg-subtle)',
+    borderRadius: 'var(--radius)',
+    border: '1px solid var(--border)',
   },
   list: {
     display: 'flex',
     flexDirection: 'column',
     marginBottom: '16px',
   },
-  loading: { fontSize: '12px', color: '#999', textAlign: 'center' },
-  empty: { fontSize: '12px', color: '#bbb', textAlign: 'center', padding: '10px 0' },
+  loading: { fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center' },
+  empty: { fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', padding: '10px 0' },
   form: {
     display: 'flex',
     gap: '8px',
+    alignItems: 'center',
   },
   input: {
     flex: 1,
+    minWidth: 0,
     padding: '10px 16px',
     borderRadius: '20px',
-    border: '1px solid #e1e1e1',
+    border: '1px solid var(--border)',
     fontSize: '13px',
     outline: 'none',
-    background: '#fff',
+    background: 'var(--bg)',
+    color: 'var(--text)',
   },
   btn: {
-    background: '#000',
+    flexShrink: 0,
+    background: 'var(--accent)',
     color: '#fff',
     border: 'none',
     borderRadius: '20px',
-    padding: '0 16px',
-    fontSize: '11px',
+    padding: '10px 18px',
+    fontSize: '13px',
     fontWeight: 600,
     cursor: 'pointer',
     transition: 'opacity 0.2s',
+    whiteSpace: 'nowrap',
   }
 };
 

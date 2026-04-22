@@ -6,6 +6,7 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   onSnapshot,
   updateDoc,
@@ -47,8 +48,6 @@ export class FirebasePostRepository {
 
   async toggleLike(postId, uid) {
     const postRef = doc(db, this.postsCollection, postId);
-    // Se obtiene el post actual para saber si ya dio like
-    const { getDoc } = await import('firebase/firestore');
     const postSnap = await getDoc(postRef);
     const currentLikes = postSnap.data()?.likes || [];
 
@@ -66,6 +65,23 @@ export class FirebasePostRepository {
       createdAt: serverTimestamp(),
     });
     return { id: docRef.id, ...commentData };
+  }
+
+  async toggleCommentLike(postId, commentId, uid) {
+    const commentRef = doc(db, this.postsCollection, postId, 'comments', commentId);
+    const commentSnap = await getDoc(commentRef);
+    const currentLikes = commentSnap.data()?.likes || [];
+
+    if (currentLikes.includes(uid)) {
+      await updateDoc(commentRef, { likes: arrayRemove(uid) });
+    } else {
+      await updateDoc(commentRef, { likes: arrayUnion(uid) });
+    }
+  }
+
+  async deleteComment(postId, commentId) {
+    const commentRef = doc(db, this.postsCollection, postId, 'comments', commentId);
+    await deleteDoc(commentRef);
   }
 
   subscribeToComments(postId, callback, onError) {
