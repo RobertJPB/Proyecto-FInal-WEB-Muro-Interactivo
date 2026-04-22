@@ -17,8 +17,9 @@ const Navbar = () => {
   return (
     <nav style={styles.nav}>
       <div style={styles.container}>
-        <Link to="/" style={styles.logo}>
-          Muro Interactivo
+        <Link to="/" style={styles.logoContainer}>
+          <span style={styles.logoPrimary}>RobertBook</span>
+          <span style={styles.logoSecondary}>muro interactivo</span>
         </Link>
 
         <div style={styles.actions}>
@@ -63,11 +64,24 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  logo: {
+  logoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    lineHeight: '1.1',
+  },
+  logoPrimary: {
     fontFamily: 'Outfit, sans-serif',
-    fontSize: '20px',
+    fontSize: '22px',
     fontWeight: 700,
     color: '#000000',
+    letterSpacing: '-0.5px',
+  },
+  logoSecondary: {
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '11px',
+    fontWeight: 500,
+    color: '#666666',
+    textTransform: 'lowercase',
   },
   actions: {
     display: 'flex',
