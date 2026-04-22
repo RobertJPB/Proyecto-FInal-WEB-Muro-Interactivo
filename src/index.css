@@ -1,0 +1,70 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --bg2: #ffffff;
+  --bg3: #fafafa;
+  --border: #eeeeee;
+  --border-hover: #000000;
+  --text: #1a1a1b; /* Negro suave más elegante */
+  --text-muted: #8e8e93;
+  --text-subtle: #c7c7cc;
+  --accent: #000000;
+  --radius: 0px; 
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Tipografía minimalista y aireada */
+  --letter-spacing: 0.02em;
+  --letter-spacing-lg: 0.05em;
+  --line-height: 1.6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Títulos con Outfit */
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: var(--letter-spacing-lg);
+}
+
+/* Scrollbar invisible/minimalista */
+::-webkit-scrollbar { width: 0px; } /* Oculta para máximo minimalismo en este estilo */
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeUp { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  letter-spacing: inherit;
+  transition: var(--transition);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+img { max-width: 100%; height: auto; }
