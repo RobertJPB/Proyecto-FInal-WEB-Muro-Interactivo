@@ -14,6 +14,7 @@ Capturas de pantalla del Sistema funcionando en la Web, tanto en Computadores co
 <img width="1019" height="708" alt="image" src="https://github.com/user-attachments/assets/478f22ff-5457-4393-b987-bbd07069153e" />
 <img width="1895" height="878" alt="image" src="https://github.com/user-attachments/assets/d6c9f56f-d5e1-4c39-aa8e-21952079eca7" />
 <img width="1627" height="872" alt="image" src="https://github.com/user-attachments/assets/a85b0e1f-ee5c-4f75-a238-c39f3b424916" />
+<img width="1589" height="892" alt="image" src="https://github.com/user-attachments/assets/0586c7ca-826f-4ccf-ad84-aaa698dace04" />
 <img width="786" height="1600" alt="61aecf06-cecc-40c1-844d-c1eee8f0bdd6" src="https://github.com/user-attachments/assets/ed2edcab-0715-4e96-977c-eec4f6df76e2" />
 
 
