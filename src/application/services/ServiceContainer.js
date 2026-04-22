@@ -7,6 +7,7 @@ import {
   RegisterUserUseCase,
   LoginUserUseCase,
   LogoutUserUseCase,
+  GoogleLoginUseCase,
 } from '../usecases/AuthUseCases';
 import {
   CreatePostUseCase,
@@ -22,6 +23,7 @@ const postRepository = new FirebasePostRepository();
 // Casos de uso (dominio)
 export const registerUserUseCase = new RegisterUserUseCase(userRepository);
 export const loginUserUseCase = new LoginUserUseCase(userRepository);
+export const googleLoginUseCase = new GoogleLoginUseCase(userRepository);
 export const logoutUserUseCase = new LogoutUserUseCase(userRepository);
 
 export const createPostUseCase = new CreatePostUseCase(postRepository);

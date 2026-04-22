@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {
   registerUserUseCase,
   loginUserUseCase,
+  googleLoginUseCase,
   logoutUserUseCase,
 } from '../services/ServiceContainer';
 import toast from 'react-hot-toast';
@@ -41,12 +42,27 @@ export const useAuthActions = () => {
     }
   };
 
+  const loginWithGoogle = async () => {
+    setLoading(true);
+    try {
+      await googleLoginUseCase.execute();
+      toast.success('¡Bienvenido con Google!');
+      return true;
+    } catch (err) {
+      const msg = translateFirebaseError(err.message);
+      toast.error(msg);
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const logout = async () => {
     await logoutUserUseCase.execute();
     toast.success('Sesión cerrada.');
   };
 
-  return { register, login, logout, loading };
+  return { register, login, loginWithGoogle, logout, loading };
 };
 
 const translateFirebaseError = (msg) => {

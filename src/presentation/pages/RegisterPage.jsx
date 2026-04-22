@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useAuthActions } from '../../application/hooks/useAuthActions';
+import GoogleButton from '../components/auth/GoogleButton';
 
 const RegisterPage = () => {
   const { currentUser } = useAuth();
-  const { register, loading } = useAuthActions();
+  const { register, loginWithGoogle, loading } = useAuthActions();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -127,6 +128,18 @@ const RegisterPage = () => {
             {loading ? 'Preparando registro...' : 'Registrar mi cuenta'}
           </button>
         </form>
+
+        <div style={styles.separator}>
+          <span style={styles.sepLine}></span>
+          <span style={styles.sepText}>o</span>
+          <span style={styles.sepLine}></span>
+        </div>
+
+        <GoogleButton 
+          onClick={loginWithGoogle} 
+          disabled={loading} 
+          text="Registrarse con Google"
+        />
       </div>
     </div>
   );
@@ -213,6 +226,23 @@ const styles = {
     textTransform: 'uppercase',
     letterSpacing: '0.15em',
     marginTop: '16px',
+  },
+  separator: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '16px',
+    margin: '24px 0',
+  },
+  sepLine: {
+    flex: 1,
+    height: '1px',
+    background: '#e0e0e0',
+  },
+  sepText: {
+    fontSize: '11px',
+    color: '#888',
+    textTransform: 'uppercase',
+    fontWeight: 600,
   },
 };
 

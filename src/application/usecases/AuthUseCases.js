@@ -55,3 +55,12 @@ export class LogoutUserUseCase {
     return await this.userRepository.logout();
   }
 }
+export class GoogleLoginUseCase {
+  constructor(userRepository) {
+    this.userRepository = userRepository;
+  }
+
+  async execute() {
+    return await this.userRepository.loginWithGoogle();
+  }
+}

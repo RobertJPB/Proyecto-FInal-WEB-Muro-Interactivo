@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 import {
   doc,
@@ -65,6 +67,36 @@ export class FirebaseUserRepository {
   async login(email, password) {
     const credential = await signInWithEmailAndPassword(auth, email, password);
     return await this.getUserById(credential.user.uid);
+  }
+  
+  async loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    const { user } = result;
+
+    // Verificar si el usuario ya existe en Firestore
+    const existingUser = await this.getUserById(user.uid);
+    if (!existingUser) {
+      // Crear perfil por defecto para usuario de Google
+      const username = user.email.split('@')[0];
+      const displayName = user.displayName || 'Usuario Google';
+      const parts = displayName.split(' ');
+      const nombre = parts[0] || 'Nombre';
+      const apellido = parts.slice(1).join(' ') || 'Apellido';
+
+      const userData = {
+        username,
+        nombre,
+        apellido,
+        email: user.email,
+        createdAt: serverTimestamp(),
+      };
+
+      await setDoc(doc(db, this.usersCollection, user.uid), userData);
+      return new User({ uid: user.uid, ...userData, createdAt: new Date() });
+    }
+
+    return existingUser;
   }
 
   async logout() {
