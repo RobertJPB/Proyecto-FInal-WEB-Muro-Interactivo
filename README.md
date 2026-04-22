@@ -1,4 +1,4 @@
-# Muro Interactivo
+Muro Interactivo
 
 Plataforma dedicada al intercambio de mensajes persistentes, desarrollada bajo estándares de Clean Architecture, Principios SOLID y el uso de las tecnologias Javascript
 (ES6), el framework React y los servicios en nube de Firebase para el Backend.
@@ -16,7 +16,7 @@ Capturas de pantalla del Sistema funcionando en la Web, tanto en Computadores co
 <img width="786" height="1600" alt="61aecf06-cecc-40c1-844d-c1eee8f0bdd6" src="https://github.com/user-attachments/assets/ed2edcab-0715-4e96-977c-eec4f6df76e2" />
 
 
-## Requisitos Funcionales del Sistema
+Requisitos Funcionales del Sistema
 
 El desarrollo se rige por las siguientes especificaciones funcionales obligatorias:
 
@@ -25,7 +25,7 @@ El desarrollo se rige por las siguientes especificaciones funcionales obligatori
 3. Autenticación: Gestión de sesiones para validación de identidad.
 4. Publicación Restringida: La creación de nuevas entradas en el muro está reservada exclusivamente para usuarios autenticados.
 
-## Especificaciones Técnicas
+Especificaciones Técnicas
 
 La arquitectura del proyecto está segmentada en capas para garantizar la independencia de la lógica de negocio frente a agentes externos:
 
